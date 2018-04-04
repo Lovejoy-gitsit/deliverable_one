@@ -1,80 +1,59 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-
-namespace mathchallenge2
+namespace mc
 {
     class Program
     {
         static void Main(string[] args)
         {
-            //declaring variables
-            var n1 = 0;
-            var n2 = 0;
-            var sum = 0;
 
-            //keeps program returning to the beginning w/o closing
-            while (true)
+            var n1 = "0";
+            var n2 = "0";
+
+            Console.WriteLine("Enter a number: ");
+            n1 = Console.ReadLine();
+
+            Console.WriteLine("Enter a number: ");
+            n2 = Console.ReadLine();
+
+            //these will be used once the indexes are converted
+            var digits = 0;
+            var digits2 = 0;
+            //counts how many times loop has gone
+            int counter = 1;
+
+            //for loop to iterate through the string
+            for (int i = 0; i < n1.Length; i++)
             {
-                //asking for user input
-                Console.WriteLine("Enter a number:  ");
-                //printing user input and converting user input from string to int
-                n1 = Convert.ToInt32(Console.ReadLine());
+                //look at each index and add them together while converting to ints
+                //must convert each index separately while using ToString method
+                digits = Convert.ToInt32(n1[i].ToString()) + Convert.ToInt32(n2[i].ToString());
+                digits2 = Convert.ToInt32(n1[i + 1].ToString()) + Convert.ToInt32(n2[i + 1].ToString());
 
-                //asking for user input
-                Console.WriteLine("Enter a number: ");
-                //printing user input and converting user input from string to int
-                n2 = Convert.ToInt32(Console.ReadLine());
-
-                //getting the sum of user input
-                sum = n1 + n2;
-                //printing the sum
-                Console.WriteLine("sum: " + sum);
-
-                //making the sum a string and setting index to 0
-                var first = sum.ToString()[0];
-                //declaring variable allMatching
-                var allMatching = true;
-                //tells program to continue getting sum of digits by going to next digit in line
-                for (int anything = 0; anything < sum.ToString().Length; anything++)
+                //check if numbers are equal and counter equals 2
+                if (digits == digits2 && counter == 2)
                 {
-                    //when the sum of the numbers are not equal break from loop
-                    if (sum.ToString()[anything] != first)
-                    {
-                        allMatching = false;
-                        break;
-                    }
+                    Console.WriteLine("true");
+                    Console.ReadLine();
+                    break;
                 }
-                    //if sum of all digits match print true
-                    if (allMatching)
-                    {
-                    Console.WriteLine("True");
-                    }
-
+                //if counter is less then 1 and digits are equal, then increment counter and loop again
+                else if (digits == digits2)
+                    counter++;
+                //if digits are not equal, let user know and break from loop
                 else
                 {
-                    //if sum of all digits does not match print false
                     Console.WriteLine("False");
-                    Console.ReadLine();
+                    break;
                 }
-               
-
-                
             }
-                
-
-
-
-           
-
-           
-
-
-
-         
-
-            
-            
-
+        
+             
+               
         }
     }
 }
